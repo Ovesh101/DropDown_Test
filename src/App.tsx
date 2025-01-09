@@ -3,7 +3,7 @@ import ColorDropdown from './components/DropDown';
 
 
 const App: React.FC = () => {
-  // Define the color options dynamically
+
   const colorOptions = [
     { label: 'Red', color: 'Red' },
     { label: 'Blue', color: 'Blue' },
