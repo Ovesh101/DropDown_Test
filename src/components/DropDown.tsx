@@ -93,23 +93,36 @@ const ColorDropdown: React.FC<ColorDropdownProps> = ({ options, onSelect }) => {
           ref={dropdownRef} 
           className="absolute left-0 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto z-10"
         >
-          <ul className="max-h-60 overflow-y-auto">
-            {filteredOptions.length === 0 ? (
-              <li className="py-2 px-4 text-gray-500">No results found</li>
-            ) : (
-              filteredOptions.map((option, index) => (
-                <li
-                  key={index}
-                  onClick={() => handleSelectChange(option.color)} // Select color
-                  className={`py-2 px-4 cursor-pointer hover:bg-blue-100 ${
-                    option.color === searchQuery ? "bg-blue-200" : ""
-                  }`} 
-                >
-                  {option.label}
-                </li>
-              ))
-            )}
-          </ul>
+<ul className="max-h-60 overflow-y-auto">
+  {filteredOptions.length === 0 && !selectedColor ? (
+    <li className="py-2 px-4 text-gray-500">No results found</li>
+  ) : selectedColor ? (
+    options.map((option, index) => (
+      <li
+        key={index}
+        onClick={() => handleSelectChange(option.color)} // Select color
+        className={`py-2 px-4 cursor-pointer hover:bg-blue-100 ${
+          option.color === selectedColor ? "bg-blue-200" : ""
+        }`}
+      >
+        {option.label}
+      </li>
+    ))
+  ) : (
+    filteredOptions.map((option, index) => (
+      <li
+        key={index}
+        onClick={() => handleSelectChange(option.color)} // Select color
+        className={`py-2 px-4 cursor-pointer hover:bg-blue-100 ${
+          option.color === searchQuery ? "bg-blue-200" : ""
+        }`}
+      >
+        {option.label}
+      </li>
+    ))
+  )}
+</ul>
+
         </div>
       )}
 
